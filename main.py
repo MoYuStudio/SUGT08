@@ -22,7 +22,7 @@ player_y_momentum = 0
 rect_x,rect_y = 300,400
 rect_w,rect_h = 200,10
 
-player_rect = pygame.Rect((player_location[0],player_location[1],player_w,player_w),width=0)
+player_rect = pygame.Rect((player_location[0],player_location[1],player_w*2,player_w*2),width=0)
 test_rect = pygame.Rect((rect_x,rect_y,rect_w,rect_h),width=0)
 
 # 1 rect_x,rect_y 2 rect_x + rect_w,rect_y 3 rect_x,rect_y + rect_h 4 rect_x + rect_w,rect_y + rect_h
@@ -45,7 +45,7 @@ while True:
 
     mainwindow.fill((0,0,0))
 
-    pygame.draw.circle(mainwindow,(255,255,255),(player_location[0],player_location[1]),player_w)
+    pygame.draw.circle(mainwindow,(255,255,255),(player_location[0]+player_w,player_location[1]+player_w),player_w)
 
     player_rect.x = player_location[0] # update rect x
     player_rect.y = player_location[1] # update rect y
