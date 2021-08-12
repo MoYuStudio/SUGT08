@@ -12,23 +12,32 @@ window_title = pygame.display.set_caption('SUGT08')
 clock = pygame.time.Clock()
 pygame.display.flip()
 
+player_w = 25
 move_speed = 5
-move_x,move_y = 100,100
 move_up,move_down,move_left,move_right = False,False,False,False
 
-rect_x,rect_y = 300,200
+player_location = [100,100]
+player_y_momentum = 0
+
+rect_x,rect_y = 300,400
+rect_w,rect_h = 200,10
+
+player_rect = pygame.Rect((player_location[0],player_location[1],player_w,player_w),width=0)
+test_rect = pygame.Rect((rect_x,rect_y,rect_w,rect_h),width=0)
+
+# 1 rect_x,rect_y 2 rect_x + rect_w,rect_y 3 rect_x,rect_y + rect_h 4 rect_x + rect_w,rect_y + rect_h
 
 def move_Fn():
-    global move_x,move_y,move_up,move_down,move_left,move_right
+    global player_location,move_up,move_down,move_left,move_right
     if move_up == True:
-        move_y -= move_speed
+        player_location[1] -= move_speed
     if move_down == True:
-        move_y += move_speed
+        player_location[1] += move_speed
     if move_left == True:
-        move_x -= move_speed
+        player_location[0] -= move_speed
     if move_right == True:
-        move_x += move_speed
-    return move_x,move_y,move_up,move_down,move_left,move_right
+        player_location[0] += move_speed
+    return player_location,move_up,move_down,move_left,move_right
 
 while True:
 
@@ -36,16 +45,23 @@ while True:
 
     mainwindow.fill((0,0,0))
 
-    pygame.draw.rect(mainwindow,(255,255,255),(rect_x,rect_y,200,10),width=0)
+    pygame.draw.circle(mainwindow,(255,255,255),(player_location[0],player_location[1]),player_w)
 
-    pygame.draw.circle(mainwindow,(255,255,255),(move_x,move_y),25)
+    player_rect.x = player_location[0] # update rect x
+    player_rect.y = player_location[1] # update rect y
 
-    pygame.display.update()
+    if player_rect.colliderect(test_rect):
+        pygame.draw.rect(mainwindow,(255,0,0),test_rect)
+        player_y_momentum = -player_y_momentum
+    else:
+        pygame.draw.rect(mainwindow,(0,255,0),test_rect)
 
-    clock.tick(60)
+    if player_location[1] > 720-50:
+        player_y_momentum = -player_y_momentum
+    else:
+        player_y_momentum += 0.2
 
-    distance = math.hypot(move_x-rect_x,move_y-rect_y)
-
+    player_location[1] += player_y_momentum
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -77,3 +93,7 @@ while True:
 
             if event.key == K_RIGHT or event.key == K_d:
                 move_right = False
+
+    pygame.display.update()
+
+    clock.tick(60)
