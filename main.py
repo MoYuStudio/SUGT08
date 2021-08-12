@@ -1,5 +1,6 @@
 
 import sys
+import math
 import pygame
 from pygame.locals import *
 
@@ -14,6 +15,8 @@ pygame.display.flip()
 move_speed = 5
 move_x,move_y = 100,100
 move_up,move_down,move_left,move_right = False,False,False,False
+
+rect_x,rect_y = 300,200
 
 def move_Fn():
     global move_x,move_y,move_up,move_down,move_left,move_right
@@ -33,11 +36,16 @@ while True:
 
     mainwindow.fill((0,0,0))
 
+    pygame.draw.rect(mainwindow,(255,255,255),(rect_x,rect_y,200,10),width=0)
+
     pygame.draw.circle(mainwindow,(255,255,255),(move_x,move_y),25)
 
     pygame.display.update()
 
     clock.tick(60)
+
+    distance = math.hypot(move_x-rect_x,move_y-rect_y)
+
 
     for event in pygame.event.get():
         if event.type == QUIT:
