@@ -69,7 +69,4 @@ while True:
 
             move += mousewheel
 
-            print(event.y)
-
-
-
+            #print(event.y)
