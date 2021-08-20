@@ -39,6 +39,9 @@ while True:
                 move = mouse_pos_y - mouse_y
 
         if event.type == pygame.MOUSEBUTTONDOWN:
+
+            #print (event.button)
+
             mouse_x, mouse_y = event.pos
 
             if button_x <= mouse_x <= button_x + button_w and button_y+move <= mouse_y <= button_y+move + button_h:
@@ -50,6 +53,14 @@ while True:
         if event.type == pygame.MOUSEBUTTONUP:
 
             moveable = False
+
+        if event.type == MOUSEWHEEL:
+            #print(event)
+            #print(event.x, event.y)
+            #print(event.flipped)
+            #print(event.which)
+
+            print(event.y)
 
 
 
