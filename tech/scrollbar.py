@@ -9,8 +9,13 @@ window_title = pygame.display.set_caption('test')
 clock = pygame.time.Clock()
 pygame.display.flip()
 
-button_x,button_y = 172, 100
-button_w,button_h = 25, 50
+line_color = [255, 255, 255]
+line_pos = [180, 100]
+line_size = [10, 350]
+
+button_color = [161, 136, 127]
+button_pos = [172, 100]
+button_size = [25, 50]
 
 moveable = False
 move = 0
@@ -22,13 +27,13 @@ while True:
 
     if move <= 0:
         move = 0
-    if move >= 350-button_h:
-        move = 350-button_h
+    if move >= 350-button_size[1]:
+        move = 350-button_size[1]
 
     mainwindow.fill((0,0,0))
 
-    pygame.draw.rect(mainwindow, (255, 255, 255),(180, 100, 10, 350), width=0)
-    pygame.draw.rect(mainwindow, (161, 136, 127),(button_x,button_y+move,button_w,button_h), width=0)
+    pygame.draw.rect(mainwindow, line_color,(line_pos,line_size), width=0)
+    pygame.draw.rect(mainwindow, button_color,(button_pos[0],button_pos[1]+move,button_size[0],button_size[1]), width=0)
     
     pygame.display.update()
 
@@ -49,7 +54,7 @@ while True:
 
             mouse_x, mouse_y = event.pos
 
-            if button_x <= mouse_x <= button_x + button_w and button_y+move <= mouse_y <= button_y+move + button_h:
+            if button_pos[0] <= mouse_x <= button_pos[0] + button_size[0] and button_pos[1]+move <= mouse_y <= button_pos[1]+move + button_size[1]:
                 print('button be clicked')
                 moveable = True
             else:
