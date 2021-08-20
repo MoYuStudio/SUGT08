@@ -20,6 +20,11 @@ mouse_pos_x,mouse_pos_y = 0,0
 
 while True:
 
+    if move <= 0:
+        move = 0
+    if move >= 350-button_h:
+        move = 350-button_h
+
     mainwindow.fill((0,0,0))
 
     pygame.draw.rect(mainwindow, (255, 255, 255),(180, 100, 10, 350), width=0)
@@ -59,6 +64,10 @@ while True:
             #print(event.x, event.y)
             #print(event.flipped)
             #print(event.which)
+
+            mousewheel = event.y
+
+            move += mousewheel
 
             print(event.y)
 
