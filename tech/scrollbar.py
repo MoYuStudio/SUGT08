@@ -50,7 +50,7 @@ while True:
             pygame.quit()
             sys.exit()
 
-        '''
+        
 
         if event.type == pygame.MOUSEMOTION:
 
@@ -58,7 +58,7 @@ while True:
             if scrollbar_moveable == True:
                 scrollbar_move = mouse_pos_y - mouse_y
 
-        '''
+        
 
         if event.type == pygame.MOUSEBUTTONDOWN:
 
