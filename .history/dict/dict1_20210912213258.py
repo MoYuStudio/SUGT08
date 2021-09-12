@@ -1,5 +1,4 @@
 import os
-import pygame
 
 files = ['a.png', 'b.png', 'c.png']
 images = {}
