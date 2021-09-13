@@ -20,16 +20,33 @@ window_on = pygame.Surface((WINDOW_SIZE))
 clock = pygame.time.Clock()
 pygame.display.flip()
 
+keyM = False
+
+alpha = 0
 
 while True:
 
     mainwindow.fill((255,255,255))
 
-    window_on.fill((255,0,255))
+    window_on.set_alpha(alpha)
+
+    window_on.fill((0,0,0))
 
     surf = pygame.transform.scale(mainwindow, MAINWINDOW_SIZE)
-    screen.blit(surf, (0, 0))
+
     surf2 = pygame.transform.scale(window_on, WINDOW_SIZE)
+
+    if keyM == True:
+        if alpha >= 0 :
+            alpha += 10
+            window_on.set_alpha(alpha)
+        else:
+            pass
+
+            
+
+    screen.blit(surf, (0, 0))
+    
     screen.blit(surf2, (0, 0))
 
     pygame.display.update()
@@ -40,3 +57,8 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == K_m:
+                keyM = True
