@@ -1,0 +1,19 @@
+
+### export PYTHONDONTWRITEBYTECODE=False
+
+# MacOS
+*/.DS_Store
+
+# Python
+*.pyc
+*.cpython-38.pyc
+*.cpython-39.pyc
+*/__pycache__
+
+moyu_engine/__pycache__
+
+moyu_engine/config/__pycache__
+
+moyu_engine/config/surface/__pycache__
+moyu_engine/config/event/__pycache__
+moyu_engine/config/system/__pycache__
